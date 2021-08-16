@@ -6,14 +6,6 @@
 # @IDE     : PyCharm
 # @GitHub  : https://github.com/harveymei/
 
-#!/usr/bin/env python
-# -*- coding:utf-8 -*-
-# @Time    : 2021/8/9 17:45
-# @Author  : Harvey Mei <harvey.mei@msn.com>
-# @FileName: example2.py
-# @IDE     : PyCharm
-# @GitHub  : https://github.com/harveymei/
-
 import matplotlib.pyplot as plt
 
 # plt.rcdefaults()  # Restore the rcParams from Matplotlib's internal default style.
