@@ -59,7 +59,8 @@ total_amount = (total_usd, total_hkd, total_eur)  #
 # https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.barh.html#matplotlib.axes.Axes.barh
 # 位置参数y，条状图的y坐标值，浮点数或者数组形式。
 # 位置参数width，条状图宽度值，浮点数或者数组形式。
-ax.barh((0, 1, 2), total_amount, align='center')
+# ax.barh((0, 1, 2), total_amount, align='center')
+hbars = ax.barh((0, 1, 2), total_amount, align='center')
 
 # 设置y轴刻度位置，浮点数列表，列表中元素数量应与y轴刻度标签数量一致。
 # https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.set_yticks.html#matplotlib.axes.Axes.set_yticks
@@ -69,6 +70,10 @@ ax.set_yticklabels(currency_name)  # 设置y轴刻度标签
 ax.invert_yaxis()  # 标签从上到下阅读，即倒置y轴（改变排序）
 ax.set_xlabel('Amount')  # 设置x轴标签
 ax.set_title('Foreign Currency Total Amount')  # 设置图表标题
+
+# Label with specially formatted floats
+ax.bar_label(hbars, fmt='%.2f')
+# ax.set_xlim(right=15)  # adjust xlim to fit labels
 
 # plt.show()
 saved_file = datetime.datetime.now().strftime('%Y%m%d%H%M%S')  # 日期对象转换为日期字符串
