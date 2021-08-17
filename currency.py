@@ -9,7 +9,8 @@
 """
 1，记录外币增减记录及金额
 2，统计每种外币当前合计金额并绘图
-3，
+3，为每种货币条形图添加数值标签
+4，根据支出记录（负浮点数值）重新计算总额
 """
 
 import matplotlib.pyplot as plt
@@ -48,13 +49,9 @@ with open(filename) as f_object:
 # plt.rcdefaults()  # Restore the rcParams from Matplotlib's internal default style.
 fig, ax = plt.subplots()
 
-# Example data
+# 定义货币名称元组和各个货币总额元组
 currency_name = ('USD', 'HKD', 'EUR')
-"""
-元组中为三种外币的合计金额，当增加或减少时（记录每次增减变化，并重新计算总和），总额应产生变化。
-"""
-# performance = (2.00, 4.00, 6.00, 8.00, 10.00)
-total_amount = (total_usd, total_hkd, total_eur)  #
+total_amount = (total_usd, total_hkd, total_eur)
 
 # https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.barh.html#matplotlib.axes.Axes.barh
 # 位置参数y，条状图的y坐标值，浮点数或者数组形式。
@@ -71,6 +68,9 @@ ax.invert_yaxis()  # 标签从上到下阅读，即倒置y轴（改变排序）
 ax.set_xlabel('Amount')  # 设置x轴标签
 ax.set_title('Foreign Currency Total Amount')  # 设置图表标题
 
+# 为条状图添加标签
+# https://matplotlib.org/stable/gallery/lines_bars_and_markers/bar_label_demo.html
+# https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.bar_label.html#matplotlib.axes.Axes.bar_label
 # Label with specially formatted floats
 ax.bar_label(hbars, fmt='%.2f')
 # ax.set_xlim(right=15)  # adjust xlim to fit labels
