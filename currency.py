@@ -14,6 +14,7 @@
 
 import matplotlib.pyplot as plt
 import csv
+import datetime
 
 # 文件操作，读取存取记录，并计算各个货币的当前余额
 filename = "data.csv"
@@ -25,6 +26,7 @@ with open(filename) as f_object:
     usd_list, hkd_list, eur_list = [], [], []
     for row in reader:
         currency_code = row[1]
+        # 判断货币类型，根据判断结果分别取值并放入各个货币列表
         if currency_code == 'usd':
             usd_list.append(float(row[-1]))
         elif currency_code == 'hkd':
@@ -41,10 +43,6 @@ with open(filename) as f_object:
         total_hkd = total_hkd + j
     for k in eur_list:
         total_eur = total_eur + k
-
-        # 判断货币类型，根据判断结果分别取值并放入各个货币列表
-
-
 
 # 绘图
 # plt.rcdefaults()  # Restore the rcParams from Matplotlib's internal default style.
@@ -72,4 +70,6 @@ ax.invert_yaxis()  # 标签从上到下阅读，即倒置y轴（改变排序）
 ax.set_xlabel('Performance')  # 设置x轴标签
 ax.set_title('How fast do you want to go today?')  # 设置图表标题
 
-plt.show()
+# plt.show()
+saved_file = datetime.datetime.now().strftime('%Y%m%d%H%M%S')  # 日期对象转换为日期字符串
+plt.savefig(saved_file + '.png')
