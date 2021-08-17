@@ -21,6 +21,7 @@ with open(filename) as f_object:
     reader = csv.reader(f_object)
     header_row = next(reader)  # 读取文件头（首行）
 
+    # 循环遍历每一行，根据货币符号判断将金额依次放入各个货币列表
     usd_list, hkd_list, eur_list = [], [], []
     for row in reader:
         currency_code = row[1]
@@ -31,12 +32,15 @@ with open(filename) as f_object:
         else:
             eur_list.append(float(row[-1]))
 
+    # 循环遍历各个货币列表并累加计算总值
+    total_usd, total_hkd, total_eur = 0, 0, 0
+
     for i in usd_list:
-        total_usd = total_usd + usd_list[i]
+        total_usd = total_usd + i
     for j in hkd_list:
-        total_hkd = total_hkd + hkd_list[j]
-    for k in range(0, len(eur_list)):
-        total_eur = total_eur + eur_list[k]
+        total_hkd = total_hkd + j
+    for k in eur_list:
+        total_eur = total_eur + k
 
         # 判断货币类型，根据判断结果分别取值并放入各个货币列表
 
