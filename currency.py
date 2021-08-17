@@ -27,9 +27,9 @@ with open(filename) as f_object:
     for row in reader:
         currency_code = row[1]
         # 判断货币类型，根据判断结果分别取值并放入各个货币列表
-        if currency_code == 'usd':
+        if currency_code == 'USD':
             usd_list.append(float(row[-1]))
-        elif currency_code == 'hkd':
+        elif currency_code == 'HKD':
             hkd_list.append(float(row[-1]))
         else:
             eur_list.append(float(row[-1]))
@@ -67,8 +67,8 @@ ax.set_yticks([0, 1, 2])
 
 ax.set_yticklabels(currency_name)  # 设置y轴刻度标签
 ax.invert_yaxis()  # 标签从上到下阅读，即倒置y轴（改变排序）
-ax.set_xlabel('Performance')  # 设置x轴标签
-ax.set_title('How fast do you want to go today?')  # 设置图表标题
+ax.set_xlabel('Amount')  # 设置x轴标签
+ax.set_title('Foreign Currency Total Amount')  # 设置图表标题
 
 # plt.show()
 saved_file = datetime.datetime.now().strftime('%Y%m%d%H%M%S')  # 日期对象转换为日期字符串
